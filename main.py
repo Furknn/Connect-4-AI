@@ -1,7 +1,4 @@
 # connect 4 game in console without pygame
-
-import numpy as np
-
 from Game import Game
 
 
@@ -15,12 +12,17 @@ def main():
     mode = int(input('Enter mode: '))
 
     # if mode has AI choose strategy
+    strategy = 0
     if mode != 1:
         print('Choose strategy:')
         print('1. Random')
         print('2. Minimax')
         print('3. Alpha-Beta')
         strategy = int(input('Enter strategy: '))
+
+    game = Game(mode, strategy)
+    game.play()
+
 
 if __name__ == '__main__':
     main()
