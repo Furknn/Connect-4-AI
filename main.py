@@ -11,17 +11,16 @@ def main():
 
     mode = int(input('Enter mode: '))
 
-    # if mode has AI choose strategy
-    strategy = 0
-    if mode != 1:
-        print('Choose strategy:')
-        print('1. Random')
-        print('2. Minimax')
-        print('3. Alpha-Beta')
-        strategy = int(input('Enter strategy: '))
+    #loop
+    while True:
+        game = Game(mode)
+        game.play()
 
-    game = Game(mode, strategy)
-    game.play()
+        # ask for rematch
+        rematch = input('Rematch? (y/n): ')
+        if rematch == 'n':
+            break
+
 
 
 if __name__ == '__main__':
