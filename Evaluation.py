@@ -15,10 +15,14 @@ class HeuristicOne(Evaluation):
     def __init__(self, depth: int):
         super().__init__(depth)
         self.board: Board = None
+        self.possible_symbols = ['X', 'O']
 
     def eval(self, board, player_symbol):
         self.board = board
-        return self.heuristic_h1(player_symbol, 3) + self.heuristic_h1(player_symbol, 2)
+        score = self.heuristic_h1(player_symbol, 3) + self.heuristic_h1(player_symbol, 2)
+        opn_symbol = self.possible_symbols[(self.possible_symbols.index(player_symbol) + 1) % 2]
+        score -= self.heuristic_h1(opn_symbol, 3) + self.heuristic_h1(opn_symbol, 2)
+        return score
 
     def heuristic_h1(self, symbol: str, sequence_len: int = 3):
         # same as h1 but with dynamic sequence length
