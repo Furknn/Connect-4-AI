@@ -1,12 +1,12 @@
 from AI import AI
 from Board import Board
 from Player import Player
+from Evaluation import Evaluation, HeuristicOne, HeuristicTwo
 
 
 class Game:
-    def __init__(self, mode: int, strategy=0):
+    def __init__(self, mode: int, strategy1: Evaluation = None, strategy2: Evaluation = None):
         self.mode = mode
-        self.strategy = strategy
         self.board = Board()
         self.players = []
 
@@ -15,10 +15,10 @@ class Game:
             self.players.append(Player('O'))
         elif mode == 2:
             self.players.append(Player('X'))
-            self.players.append(AI('O', strategy))
+            self.players.append(AI('O', strategy1))
         else:
-            self.players.append(AI('X', strategy))
-            self.players.append(AI('O', strategy))
+            self.players.append(AI('X', strategy1))
+            self.players.append(AI('O', strategy2))
 
     def play(self):
         # game loop
@@ -51,6 +51,3 @@ class Game:
 
             # switch player
             player_index = (player_index + 1) % 2
-
-
-
