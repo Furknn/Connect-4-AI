@@ -57,8 +57,7 @@ class AI(Player):
             return float('-inf')
 
         if depth == self.evaluation_strategy.depth:
-            ee=  self.evaluation_strategy.eval(board, self.symbol)
-            return ee
+            return self.evaluation_strategy.eval(board, self.symbol)
 
         if maximizing_player:
             max_score = float('-inf')
